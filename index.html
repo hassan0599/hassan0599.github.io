@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mohammad Hassan Amer | Software Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              background: '#09090b' /* Zinc 950 */,
+              surface: '#18181b' /* Zinc 900 */,
+              border: '#27272a' /* Zinc 800 */,
+              primary: '#f4f4f5' /* Zinc 100 */,
+              secondary: '#a1a1aa' /* Zinc 400 */,
+              accent: '#3b82f6' /* Blue 500 - subtle accent */,
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet" />
+    <style>
+      body {
+        background-color: #09090b;
+        color: #f4f4f5;
+      }
+      /* Minimal Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #27272a;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #3f3f46;
+      }
+      .glass-nav {
+        background: rgba(9, 9, 11, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+    </style>
+  </head>
+  <body class="antialiased selection:bg-white selection:text-black">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav border-b border-border">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="flex items-center justify-between h-16">
+          <a
+            href="#"
+            class="text-lg font-medium tracking-tight hover:text-white transition-colors">
+            Mohammad Hassan Amer.
+          </a>
+          <div
+            class="hidden md:flex items-center space-x-8 text-sm font-medium text-secondary">
+            <a href="#experience" class="hover:text-white transition-colors"
+              >Experience</a
+            >
+            <a href="#projects" class="hover:text-white transition-colors"
+              >Projects</a
+            >
+            <a href="#writing" class="hover:text-white transition-colors"
+              >Writing</a
+            >
+            <a
+              href="mailto:developer.mha@gmail.com"
+              class="text-white bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full transition-all">
+              Get in Touch
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <main class="max-w-5xl mx-auto px-6 pt-32 pb-20">
+      <!-- Hero Section -->
+      <section class="mb-32 fade-in-up">
+        <div class="max-w-3xl">
+          <h1
+            class="text-5xl md:text-6xl font-semibold tracking-tight leading-tight mb-8 text-white">
+            Software Developer specializing in full-stack development & AI
+            integration.
+          </h1>
+          <p
+            class="text-xl text-secondary leading-relaxed max-w-2xl mb-10 font-light">
+            I build scalable web applications and automation pipelines.
+            Currently based in Toronto, merging a background in Cognitive
+            Science & Physics with modern software engineering to solve complex
+            problems.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="https://www.linkedin.com/in/hassan0599"
+              target="_blank"
+              class="flex items-center text-sm font-medium text-white border border-border px-5 py-2.5 rounded-md hover:bg-surface transition-colors">
+              <i data-lucide="linkedin" class="w-4 h-4 mr-2"></i> LinkedIn
+            </a>
+            <a
+              href="https://github.com/hassan0599"
+              target="_blank"
+              class="flex items-center text-sm font-medium text-white border border-border px-5 py-2.5 rounded-md hover:bg-surface transition-colors">
+              <i data-lucide="github" class="w-4 h-4 mr-2"></i> GitHub
+            </a>
+            <a
+              href="mailto:developer.mha@gmail.com"
+              class="flex items-center text-sm font-medium text-white border border-border px-5 py-2.5 rounded-md hover:bg-surface transition-colors">
+              <i data-lucide="mail" class="w-4 h-4 mr-2"></i> Email
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience Section -->
+      <section id="experience" class="mb-32">
+        <div class="flex items-baseline justify-between mb-12">
+          <h2 class="text-2xl font-medium text-white tracking-tight">
+            Experience
+          </h2>
+          <span class="text-sm text-secondary">2021 — Present</span>
+        </div>
+
+        <div class="space-y-12 border-l border-border pl-8 relative">
+          <!-- Experience Item: Shifthive -->
+          <div class="relative">
+            <div
+              class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-background border border-border"></div>
+            <div
+              class="flex flex-col md:flex-row md:items-baseline md:justify-between mb-2">
+              <h3 class="text-xl font-medium text-white">Shifthive</h3>
+              <span class="text-sm text-secondary font-mono"
+                >Apr 2022 — Mar 2024</span
+              >
+            </div>
+            <div class="text-base text-white/80 mb-4">Software Developer</div>
+            <p class="text-secondary leading-relaxed max-w-3xl">
+              Built a workforce scheduling platform for hospitals using Next.js,
+              reducing manual scheduling time by 70% and cutting overtime costs
+              by 20% via automated allocation algorithms. Developed an
+              Excel-to-algorithm pipeline that eliminated 15 hours of weekly
+              manual data entry.
+            </p>
+          </div>
+
+          <!-- Experience Item: Freelance -->
+          <div class="relative">
+            <div
+              class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-background border border-border"></div>
+            <div
+              class="flex flex-col md:flex-row md:items-baseline md:justify-between mb-2">
+              <h3 class="text-xl font-medium text-white">Freelance</h3>
+              <span class="text-sm text-secondary font-mono"
+                >Aug 2021 — Present</span
+              >
+            </div>
+            <div class="text-base text-white/80 mb-4">Software Developer</div>
+            <p class="text-secondary leading-relaxed max-w-3xl">
+              Integrated OpenAI GPT API for automated content generation (95%
+              accuracy). Engineered WhatsApp Business API automation with
+              serverless webhooks for real-time CRM integration, reducing
+              response times by 60%.
+            </p>
+          </div>
+
+          <!-- Experience Item: mobileLIVE -->
+          <div class="relative">
+            <div
+              class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-background border border-border"></div>
+            <div
+              class="flex flex-col md:flex-row md:items-baseline md:justify-between mb-2">
+              <h3 class="text-xl font-medium text-white">mobileLIVE Inc.</h3>
+              <span class="text-sm text-secondary font-mono"
+                >Jun 2022 — Sep 2022</span
+              >
+            </div>
+            <div class="text-base text-white/80 mb-4">
+              Software Developer Intern
+            </div>
+            <p class="text-secondary leading-relaxed max-w-3xl">
+              Developed responsive web applications using React.js. Improved
+              coding efficiency through design patterns, reducing bug rates and
+              creating scalable codebases for production environments.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="mb-32">
+        <h2 class="text-2xl font-medium text-white tracking-tight mb-12">
+          Featured Projects
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Project 1 -->
+          <div
+            class="group p-6 rounded-lg border border-border bg-surface/30 hover:bg-surface/60 transition-all">
+            <div class="flex justify-between items-start mb-6">
+              <div class="p-2 bg-surface rounded-md border border-border">
+                <i data-lucide="file-text" class="w-6 h-6 text-white"></i>
+              </div>
+              <a
+                href="https://coverpro.netlify.app"
+                class="text-secondary hover:text-white transition-colors">
+                <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+              </a>
+            </div>
+            <h3 class="text-lg font-medium text-white mb-2">
+              Cover Pro Web Application
+            </h3>
+            <p class="text-secondary text-sm leading-relaxed mb-6">
+              Full-stack app integrating Google Gemini AI for personalized cover
+              letter generation. Analyzes resume content against job
+              descriptions to create tailored letters.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="text-xs font-medium text-secondary bg-surface px-2 py-1 rounded border border-border"
+                >Next.js</span
+              >
+              <span
+                class="text-xs font-medium text-secondary bg-surface px-2 py-1 rounded border border-border"
+                >TypeScript</span
+              >
+              <span
+                class="text-xs font-medium text-secondary bg-surface px-2 py-1 rounded border border-border"
+                >Supabase</span
+              >
+              <span
+                class="text-xs font-medium text-secondary bg-surface px-2 py-1 rounded border border-border"
+                >Clerk</span
+              >
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div
+            class="group p-6 rounded-lg border border-border bg-surface/30 hover:bg-surface/60 transition-all">
+            <div class="flex justify-between items-start mb-6">
+              <div class="p-2 bg-surface rounded-md border border-border">
+                <i data-lucide="search" class="w-6 h-6 text-white"></i>
+              </div>
+              <a
+                href="https://chromewebstore.google.com/detail/facty-fact-check-ai/jhabhhloocimglfoeedangndajfbapcd?authuser=0&hl=en"
+                class="text-secondary hover:text-white transition-colors">
+                <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+              </a>
+            </div>
+            <h3 class="text-lg font-medium text-white mb-2">
+              Facty AI Chrome Extension
+            </h3>
+            <p class="text-secondary text-sm leading-relaxed mb-6">
+              Real-time fact-checking extension integrating Gemini 2.5 Pro AI
+              and Google Custom Search API. Provides verdicts with detailed
+              explanations and citations.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="text-xs font-medium text-secondary bg-surface px-2 py-1 rounded border border-border"
+                >Chrome API</span
+              >
+              <span
+                class="text-xs font-medium text-secondary bg-surface px-2 py-1 rounded border border-border"
+                >JavaScript</span
+              >
+              <span
+                class="text-xs font-medium text-secondary bg-surface px-2 py-1 rounded border border-border"
+                >Gemini AI</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Writing Section -->
+      <section id="writing" class="mb-32">
+        <h2 class="text-2xl font-medium text-white tracking-tight mb-12">
+          Selected Writing
+        </h2>
+
+        <div class="space-y-6">
+          <a
+            href="https://medium.com/@hassan0599/from-bricks-to-bytes-the-art-of-constructing-quality-software-c7114ba65354"
+            target="_blank"
+            class="block group">
+            <div
+              class="flex flex-col md:flex-row md:items-baseline md:justify-between py-4 border-b border-border group-hover:border-white/20 transition-colors">
+              <h3
+                class="text-lg font-medium text-white group-hover:text-white/80 transition-colors">
+                From Bricks to Bytes: The Art of Constructing Quality Software
+              </h3>
+              <div class="flex items-center gap-4 mt-2 md:mt-0">
+                <span class="text-sm text-secondary font-mono">Medium</span>
+                <i
+                  data-lucide="arrow-right"
+                  class="w-4 h-4 text-secondary group-hover:translate-x-1 transition-transform"></i>
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="https://medium.com/@hassan0599/exploring-the-latest-developments-in-ai-eb3eebf7870a"
+            target="_blank"
+            class="block group">
+            <div
+              class="flex flex-col md:flex-row md:items-baseline md:justify-between py-4 border-b border-border group-hover:border-white/20 transition-colors">
+              <h3
+                class="text-lg font-medium text-white group-hover:text-white/80 transition-colors">
+                Exploring the Latest Developments in AI
+              </h3>
+              <div class="flex items-center gap-4 mt-2 md:mt-0">
+                <span class="text-sm text-secondary font-mono">Medium</span>
+                <i
+                  data-lucide="arrow-right"
+                  class="w-4 h-4 text-secondary group-hover:translate-x-1 transition-transform"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Technical Skills (Minimal List) -->
+      <section class="mb-20">
+        <h2 class="text-xl font-medium text-white tracking-tight mb-8">
+          Technical Skills
+        </h2>
+        <div class="flex flex-wrap gap-x-12 gap-y-4 text-secondary">
+          <div>
+            <span
+              class="block text-xs font-semibold text-white uppercase tracking-wider mb-3"
+              >Languages</span
+            >
+            <ul class="space-y-1 text-sm">
+              <li>TypeScript / JavaScript</li>
+              <li>Python</li>
+              <li>Java / Kotlin</li>
+              <li>SQL</li>
+            </ul>
+          </div>
+          <div>
+            <span
+              class="block text-xs font-semibold text-white uppercase tracking-wider mb-3"
+              >Frameworks</span
+            >
+            <ul class="space-y-1 text-sm">
+              <li>Next.js / React</li>
+              <li>Node.js / Express</li>
+              <li>Flask</li>
+              <li>Tailwind CSS</li>
+            </ul>
+          </div>
+          <div>
+            <span
+              class="block text-xs font-semibold text-white uppercase tracking-wider mb-3"
+              >Tools & Cloud</span
+            >
+            <ul class="space-y-1 text-sm">
+              <li>Docker</li>
+              <li>Supabase</li>
+              <li>Google Cloud Platform</li>
+              <li>OpenAI / Gemini API</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Simple Footer -->
+      <footer
+        class="pt-12 border-t border-border flex flex-col md:flex-row justify-between items-center text-sm text-secondary">
+        <p>&copy; 2025 Mohammad Hassan Amer</p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="#" class="hover:text-white transition-colors">Resume</a>
+          <a
+            href="https://www.linkedin.com/in/hassan0599"
+            class="hover:text-white transition-colors"
+            >LinkedIn</a
+          >
+          <a
+            href="https://github.com/hassan0599"
+            class="hover:text-white transition-colors"
+            >GitHub</a
+          >
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      lucide.createIcons()
+    </script>
+  </body>
+</html>
