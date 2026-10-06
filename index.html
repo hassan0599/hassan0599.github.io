@@ -14,7 +14,7 @@
     <meta property="og:type" content="website" />
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230d1117'/%3E%3Ctext x='50' y='66' font-size='44' font-family='monospace' font-weight='700' text-anchor='middle' fill='%237ee787'%3E%3E_%3C/text%3E%3C/svg%3E" />
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231e3a8a'/%3E%3Ctext x='50' y='68' font-size='52' font-family='Arial, sans-serif' font-weight='600' text-anchor='middle' fill='white'%3EM%3C/text%3E%3C/svg%3E" />
     <!-- Cloudflare Web Analytics -->
     <script
       defer
@@ -29,686 +29,555 @@
         theme: {
           extend: {
             colors: {
-              bg: '#0d1117',
-              panel: '#161b22',
-              ink: '#c9d1d9',
-              muted: '#8b949e',
-              comment: '#6e7681',
-              accent: '#7ee787',
-              kw: '#d2a8ff',
-              str: '#e3b341',
-              fn: '#79c0ff',
+              navy: {
+                DEFAULT: '#1e3a8a',
+                dark: '#172e6d',
+                light: '#2c4fa8',
+              },
             },
             fontFamily: {
-              sans: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
-              mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+              sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
             },
           },
         },
       }
     </script>
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet" />
     <style>
-      :root {
-        color-scheme: dark;
-      }
       body {
-        background-color: #0d1117;
-        color: #c9d1d9;
-        font-feature-settings: 'liga' 0;
+        background-color: #fcfcfd;
+        color: #18181b;
       }
-
-      /* Minimal scrollbar */
+      ::selection {
+        background: #1e3a8a;
+        color: #ffffff;
+      }
       ::-webkit-scrollbar {
-        width: 6px;
+        width: 8px;
       }
       ::-webkit-scrollbar-track {
         background: transparent;
       }
       ::-webkit-scrollbar-thumb {
-        background: #21262d;
-        border-radius: 3px;
+        background: #d4d4d8;
+        border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #30363d;
+        background: #a1a1aa;
       }
-
-      ::selection {
-        background: rgb(126 231 135 / 0.25);
-      }
-
       .glass-nav {
-        background: rgba(13, 17, 23, 0.85);
+        background: rgba(252, 252, 253, 0.85);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
       }
-
-      /* Code-flavored helpers */
-      .cm {
-        color: #6e7681;
-        font-style: italic;
-      }
-      .tag {
-        color: rgb(126 231 135 / 0.7);
-        white-space: nowrap;
-      }
-      .tag::before {
-        content: '[';
-        margin-right: 2px;
-      }
-      .tag::after {
-        content: ']';
-        margin-left: 2px;
-      }
-
-      /* Subtle scroll reveal */
-      .reveal {
-        opacity: 0;
-        transform: translateY(12px);
-        transition:
-          opacity 0.5s ease,
-          transform 0.5s ease;
-      }
-      .reveal.visible {
-        opacity: 1;
-        transform: none;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .reveal {
-          opacity: 1;
-          transform: none;
-          transition: none;
-        }
-      }
     </style>
   </head>
-  <body class="antialiased text-sm">
+  <body class="antialiased">
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-nav border-b border-white/5">
-      <div class="max-w-3xl mx-auto px-6">
+    <nav class="fixed w-full z-50 glass-nav border-b border-zinc-200/70">
+      <div class="max-w-2xl mx-auto px-6">
         <div class="flex items-center justify-between h-14">
-          <a href="#top" class="text-ink">
-            <span class="text-accent">mha</span>@portfolio<span class="text-accent">:~$</span>
-            <span class="ml-1 inline-block w-2 h-3.5 bg-accent/80 align-middle animate-pulse"></span>
+          <a
+            href="#top"
+            class="text-sm font-semibold text-zinc-900 hover:text-navy transition-colors">
+            Mohammad Hassan Amer
           </a>
-          <div class="hidden md:flex items-center gap-6 text-xs text-muted">
-            <a href="#experience" class="hover:text-accent transition-colors">./experience</a>
-            <a href="#client-work" class="hover:text-accent transition-colors">./client_work</a>
-            <a href="#projects" class="hover:text-accent transition-colors">./projects</a>
-            <a href="#writing" class="hover:text-accent transition-colors">./writing</a>
-            <a href="#contact" class="text-accent hover:text-white transition-colors">./contact</a>
+          <div class="hidden md:flex items-center gap-6 text-xs font-medium text-zinc-500">
+            <a href="#experience" class="hover:text-navy transition-colors">Experience</a>
+            <a href="#client-work" class="hover:text-navy transition-colors">Client Work</a>
+            <a href="#projects" class="hover:text-navy transition-colors">Projects</a>
+            <a href="#writing" class="hover:text-navy transition-colors">Writing</a>
+            <a
+              href="mailto:developer.mha@gmail.com"
+              class="text-white bg-navy hover:bg-navy-dark px-3.5 py-1.5 rounded-md transition-colors">
+              Get in Touch
+            </a>
           </div>
           <button
             id="menu-toggle"
-            class="md:hidden text-muted hover:text-accent transition-colors"
+            class="md:hidden text-zinc-500 hover:text-navy transition-colors"
             aria-label="Toggle menu">
             <i data-lucide="menu" class="w-5 h-5"></i>
           </button>
         </div>
       </div>
-      <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 glass-nav">
-        <div class="px-6 py-4 flex flex-col gap-3 text-xs text-muted">
-          <a href="#experience" class="hover:text-accent transition-colors">./experience</a>
-          <a href="#client-work" class="hover:text-accent transition-colors">./client_work</a>
-          <a href="#projects" class="hover:text-accent transition-colors">./projects</a>
-          <a href="#writing" class="hover:text-accent transition-colors">./writing</a>
-          <a href="#contact" class="text-accent hover:text-white transition-colors">./contact</a>
+      <div id="mobile-menu" class="hidden md:hidden border-t border-zinc-200/70 glass-nav">
+        <div class="px-6 py-4 flex flex-col gap-3 text-xs font-medium text-zinc-500">
+          <a href="#experience" class="hover:text-navy transition-colors">Experience</a>
+          <a href="#client-work" class="hover:text-navy transition-colors">Client Work</a>
+          <a href="#projects" class="hover:text-navy transition-colors">Projects</a>
+          <a href="#writing" class="hover:text-navy transition-colors">Writing</a>
+          <a href="#contact" class="hover:text-navy transition-colors">Contact</a>
         </div>
       </div>
     </nav>
 
     <!-- Main Content Wrapper -->
-    <main id="top" class="max-w-3xl mx-auto px-6 pt-28 pb-10">
-      <!-- Hero: terminal window -->
-      <section class="mb-20 reveal">
-        <div class="rounded-lg border border-white/10 bg-panel overflow-hidden">
-          <div
-            class="flex items-center gap-2 px-4 py-3 border-b border-white/10">
-            <span class="w-3 h-3 rounded-full bg-white/10"></span>
-            <span class="w-3 h-3 rounded-full bg-white/10"></span>
-            <span class="w-3 h-3 rounded-full bg-white/10"></span>
-            <span class="ml-3 text-xs text-comment">hassan@portfolio: ~/about</span>
-          </div>
-          <div class="p-5 md:p-6 text-xs md:text-[13px] leading-6 overflow-x-auto">
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">1</span>
-              <span><span class="text-accent">$</span> <span class="text-ink">whoami</span></span>
-            </div>
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">2</span>
-              <span class="text-ink font-medium">mohammad-hassan-amer</span>
-            </div>
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">3</span>
-              <span></span>
-            </div>
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">4</span>
-              <span class="cm">// full-stack software engineer — toronto, on</span>
-            </div>
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">5</span>
-              <span><span class="text-kw">const</span> <span class="text-fn">hassan</span> = {</span>
-            </div>
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">6</span>
-              <span>&nbsp;&nbsp;role: <span class="text-str">"full-stack software engineer"</span>,</span>
-            </div>
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">7</span>
-              <span>&nbsp;&nbsp;specializesIn: [</span>
-            </div>
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">8</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-str">"web application development"</span>,</span>
-            </div>
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">9</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-str">"third-party api &amp; crm integrations"</span>,</span>
-            </div>
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">10</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-str">"ai-powered product features"</span>,</span>
-            </div>
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">11</span>
-              <span>&nbsp;&nbsp;],</span>
-            </div>
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">12</span>
-              <span>&nbsp;&nbsp;education: <span class="text-str">"bsc cognitive science &amp; physics · u of t"</span>,</span>
-            </div>
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">13</span>
-              <span>&nbsp;&nbsp;site: <span class="text-str">"hassan0599.github.io"</span>,</span>
-            </div>
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">14</span>
-              <span>&nbsp;&nbsp;status: <span class="text-str">"open to new work"</span>,</span>
-            </div>
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">15</span>
-              <span>};</span>
-            </div>
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">16</span>
-              <span></span>
-            </div>
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">17</span>
-              <span><span class="text-accent">$</span> <span class="text-ink">cat</span> ./contact.txt</span>
-            </div>
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">18</span>
-              <span>email: <a href="mailto:developer.mha@gmail.com" class="text-accent hover:underline">developer.mha@gmail.com</a></span>
-            </div>
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">19</span>
-              <span>github: <a href="https://github.com/hassan0599" target="_blank" rel="noopener" class="text-accent hover:underline">github.com/hassan0599</a></span>
-            </div>
-            <div class="flex">
-              <span class="lnum select-none text-white/20 w-7 shrink-0 text-right mr-4">20</span>
-              <span>linkedin: <a href="https://www.linkedin.com/in/hassan0599" target="_blank" rel="noopener" class="text-accent hover:underline">linkedin.com/in/hassan0599</a></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Social buttons -->
-        <div class="flex flex-wrap gap-3 mt-6 text-xs">
+    <main id="top" class="max-w-2xl mx-auto px-6 pt-28 pb-10">
+      <!-- Hero -->
+      <header class="mb-4">
+        <p class="text-xs font-medium uppercase tracking-[0.18em] text-zinc-400 mb-4">
+          Toronto, Canada
+        </p>
+        <h1 class="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900 mb-3">
+          Full-Stack Software Engineer
+        </h1>
+        <p class="text-base text-zinc-600 leading-relaxed max-w-xl mb-8">
+          I build and ship production systems across the full stack — from
+          REST API and webhook design to responsive front-end interfaces —
+          with a focus on web applications, third-party API &amp; CRM
+          integrations, and AI-powered product features.
+        </p>
+        <div class="flex flex-wrap gap-3 text-sm">
           <a
             href="mailto:developer.mha@gmail.com"
-            class="border border-white/10 hover:border-accent/50 hover:text-accent text-ink px-4 py-2 transition-colors">
-            [email↗]
-          </a>
-          <a
-            href="https://github.com/hassan0599"
-            target="_blank"
-            rel="noopener"
-            class="border border-white/10 hover:border-accent/50 hover:text-accent text-ink px-4 py-2 transition-colors">
-            [github↗]
+            class="inline-flex items-center gap-2 text-white bg-navy hover:bg-navy-dark px-5 py-2.5 rounded-md font-medium transition-colors">
+            <i data-lucide="mail" class="w-4 h-4"></i> Get in Touch
           </a>
           <a
             href="https://www.linkedin.com/in/hassan0599"
             target="_blank"
             rel="noopener"
-            class="border border-white/10 hover:border-accent/50 hover:text-accent text-ink px-4 py-2 transition-colors">
-            [linkedin↗]
+            class="inline-flex items-center gap-2 text-zinc-700 border border-zinc-300 hover:border-navy hover:text-navy px-5 py-2.5 rounded-md font-medium transition-colors">
+            <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+          </a>
+          <a
+            href="https://github.com/hassan0599"
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 text-zinc-700 border border-zinc-300 hover:border-navy hover:text-navy px-5 py-2.5 rounded-md font-medium transition-colors">
+            <i data-lucide="github" class="w-4 h-4"></i> GitHub
           </a>
         </div>
-      </section>
+      </header>
 
-      <!-- Experience Section -->
-      <section id="experience" class="mb-20 scroll-mt-24">
-        <div class="reveal mb-8 flex items-center gap-4">
-          <h2 class="text-accent text-xs whitespace-nowrap">// 01 · experience</h2>
-          <div class="h-px flex-1 bg-white/5"></div>
+      <!-- Experience -->
+      <section id="experience" class="mt-20 scroll-mt-24">
+        <div class="mb-8">
+          <h2 class="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
+            Experience
+          </h2>
+          <div class="mt-3 h-px bg-zinc-200"></div>
         </div>
 
-        <article class="reveal">
-          <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 mb-1">
-            <h3 class="text-ink font-medium">
-              mobileLIVE Inc. <span class="text-muted">— software developer intern</span>
+        <article>
+          <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+            <h3 class="text-base font-semibold text-zinc-900">
+              Software Developer Intern — mobileLIVE Inc.
             </h3>
-            <time class="text-xs text-comment">jun 2022 — sep 2022</time>
+            <span class="text-xs text-zinc-400">Jun 2022 — Sep 2022</span>
           </div>
-          <p class="text-xs text-str/80 mb-4">richmond hill, on · summer term</p>
-          <ul class="space-y-2 mb-4 max-w-2xl">
-            <li class="flex gap-2 text-muted leading-relaxed">
-              <span class="text-accent shrink-0">-</span>
-              <span>developed responsive web applications with react.js, javascript es7+ and jquery — faster page loads and a smoother experience across desktop and mobile.</span>
+          <p class="text-sm text-zinc-500 mt-0.5">Richmond Hill, ON</p>
+          <ul class="mt-3 space-y-2 text-sm text-zinc-600 leading-relaxed max-w-xl">
+            <li class="flex gap-3">
+              <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+              <span>Developed responsive web applications with React.js, JavaScript ES7+ and jQuery — faster page loads and a smoother experience across desktop and mobile.</span>
             </li>
-            <li class="flex gap-2 text-muted leading-relaxed">
-              <span class="text-accent shrink-0">-</span>
-              <span>applied design patterns and best practices, reducing bug rates and helping the team ship scalable, production-ready code.</span>
+            <li class="flex gap-3">
+              <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+              <span>Applied design patterns and best practices, reducing bug rates and helping the team ship scalable, production-ready code.</span>
             </li>
-            <li class="flex gap-2 text-muted leading-relaxed">
-              <span class="text-accent shrink-0">-</span>
-              <span>collaborated in an agile team with clear cross-functional communication.</span>
+            <li class="flex gap-3">
+              <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+              <span>Collaborated in an agile team with clear cross-functional communication.</span>
             </li>
           </ul>
-          <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs">
-            <span class="tag">react.js</span>
-            <span class="tag">javascript es7+</span>
-            <span class="tag">jquery</span>
-            <span class="tag">agile</span>
-          </div>
+          <p class="mt-3 text-xs text-zinc-400">
+            React.js · JavaScript ES7+ · jQuery · Agile
+          </p>
         </article>
       </section>
 
-      <!-- Client Work Section -->
-      <section id="client-work" class="mb-20 scroll-mt-24">
-        <div class="reveal mb-8 flex items-center gap-4">
-          <h2 class="text-accent text-xs whitespace-nowrap">// 02 · client_work</h2>
-          <div class="h-px flex-1 bg-white/5"></div>
+      <!-- Client Work -->
+      <section id="client-work" class="mt-20 scroll-mt-24">
+        <div class="mb-8">
+          <h2 class="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
+            Client Work
+          </h2>
+          <div class="mt-3 h-px bg-zinc-200"></div>
         </div>
 
         <div class="space-y-12">
-          <!-- Aarika Real Estate -->
-          <article class="reveal">
-            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 mb-1">
-              <h3 class="text-ink font-medium">
-                aarika real estate <span class="text-muted">— crm integration</span>
+          <!-- Aarika -->
+          <article>
+            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+              <h3 class="text-base font-semibold text-zinc-900">
+                Aarika Real Estate — CRM Integration
               </h3>
-              <time class="text-xs text-comment">may 2026 — present</time>
+              <span class="text-xs text-zinc-400">May 2026 — Present</span>
             </div>
-            <p class="text-xs text-str/80 mb-4">freelance · dubai, ae</p>
-            <ul class="space-y-2 mb-4 max-w-2xl">
-              <li class="flex gap-2 text-muted leading-relaxed">
-                <span class="text-accent shrink-0">-</span>
-                <span>delivered a crm integration connecting aarika's off-plan listings page to the leadrat real-estate crm, removing the need for the sales team to manually update property inventory.</span>
+            <p class="text-sm text-zinc-500 mt-0.5">Freelance · Dubai, AE</p>
+            <ul class="mt-3 space-y-2 text-sm text-zinc-600 leading-relaxed max-w-xl">
+              <li class="flex gap-3">
+                <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+                <span>Delivered a CRM integration connecting Aarika's off-plan listings page to the LeadRat real-estate CRM, removing the need for the sales team to manually update property inventory.</span>
               </li>
-              <li class="flex gap-2 text-muted leading-relaxed">
-                <span class="text-accent shrink-0">-</span>
-                <span>built the data-fetching, response-parsing and dynamic-rendering layer keeping live project and inventory data accurate on the public site — improving buyer confidence and reducing listing discrepancies.</span>
+              <li class="flex gap-3">
+                <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+                <span>Built the data-fetching, response-parsing and dynamic-rendering layer keeping live inventory data accurate on the public site — improving buyer confidence and reducing listing discrepancies.</span>
               </li>
             </ul>
-            <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs">
-              <span class="tag">leadrat crm api</span>
-              <span class="tag">rest</span>
-              <span class="tag">javascript</span>
-              <span class="tag">react</span>
-            </div>
+            <p class="mt-3 text-xs text-zinc-400">
+              LeadRat CRM API · REST · JavaScript · React
+            </p>
           </article>
 
-          <!-- CASA Real Estate -->
-          <article class="reveal">
-            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 mb-1">
-              <h3 class="text-ink font-medium">
-                casa real estate <span class="text-muted">— whatsapp business crm automation</span>
+          <!-- CASA -->
+          <article>
+            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+              <h3 class="text-base font-semibold text-zinc-900">
+                CASA Real Estate — WhatsApp CRM Automation
               </h3>
-              <time class="text-xs text-comment">jan 2025 — mar 2025</time>
+              <span class="text-xs text-zinc-400">Jan 2025 — Mar 2025</span>
             </div>
-            <p class="text-xs text-str/80 mb-4">freelance</p>
-            <ul class="space-y-2 mb-4 max-w-2xl">
-              <li class="flex gap-2 text-muted leading-relaxed">
-                <span class="text-accent shrink-0">-</span>
-                <span>built an end-to-end whatsapp business api automation pipeline from the ground up — designing the restful request/response layer powering automated, real-time customer conversations at scale.</span>
+            <p class="text-sm text-zinc-500 mt-0.5">Freelance</p>
+            <ul class="mt-3 space-y-2 text-sm text-zinc-600 leading-relaxed max-w-xl">
+              <li class="flex gap-3">
+                <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+                <span>Built an end-to-end WhatsApp Business API automation pipeline — designing the RESTful request/response layer powering automated, real-time customer conversations at scale.</span>
               </li>
-              <li class="flex gap-2 text-muted leading-relaxed">
-                <span class="text-accent shrink-0">-</span>
-                <span>implemented webhook receivers with signature verification and deployed serverless functions for real-time crm sync and lead routing — cutting response times by 60% and converting more inbound leads into paying customers.</span>
+              <li class="flex gap-3">
+                <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+                <span>Implemented webhook receivers with signature verification and deployed serverless functions for real-time CRM sync and lead routing — cutting response times by 60%.</span>
               </li>
             </ul>
-            <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs">
-              <span class="tag">whatsapp business api</span>
-              <span class="tag">webhooks</span>
-              <span class="tag">aws lambda / gcp functions</span>
-            </div>
+            <p class="mt-3 text-xs text-zinc-400">
+              WhatsApp Business API · Webhooks · AWS Lambda / GCP Functions
+            </p>
           </article>
 
           <!-- Blushy Baby -->
-          <article class="reveal">
-            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 mb-1">
-              <h3 class="text-ink font-medium">
-                blushy baby <span class="text-muted">— baby tracking mobile app</span>
+          <article>
+            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+              <h3 class="text-base font-semibold text-zinc-900">
+                Blushy Baby — Baby Tracking Mobile App
               </h3>
               <a
                 href="https://play.google.com/store/apps/details?id=com.developer.blushy.blushybaby"
                 target="_blank"
                 rel="noopener"
-                class="text-xs text-accent hover:underline">live on google play ↗</a>
+                class="text-xs font-medium text-navy hover:underline">
+                Google Play ↗
+              </a>
             </div>
-            <p class="text-xs text-str/80 mb-4">freelance · client project</p>
-            <ul class="space-y-2 mb-4 max-w-2xl">
-              <li class="flex gap-2 text-muted leading-relaxed">
-                <span class="text-accent shrink-0">-</span>
-                <span>built a mobile app for a client who wanted a simple way for new parents to track their baby — covering daily routines, feeds, sleep and the milestones that matter.</span>
+            <p class="text-sm text-zinc-500 mt-0.5">Freelance · Client Project</p>
+            <ul class="mt-3 space-y-2 text-sm text-zinc-600 leading-relaxed max-w-xl">
+              <li class="flex gap-3">
+                <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+                <span>Built a mobile app for a client who wanted a simple way for new parents to track their baby — daily routines, feeds, sleep and milestones.</span>
               </li>
-              <li class="flex gap-2 text-muted leading-relaxed">
-                <span class="text-accent shrink-0">-</span>
-                <span>designed around a calm, minimal interface so exhausted parents can log anything in seconds.</span>
+              <li class="flex gap-3">
+                <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+                <span>Designed around a calm, minimal interface so parents can log anything in seconds.</span>
               </li>
             </ul>
-            <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs">
-              <span class="tag">mobile app</span>
-              <span class="tag">android</span>
-              <span class="tag">google play</span>
-            </div>
+            <p class="mt-3 text-xs text-zinc-400">
+              Mobile App · Android · Google Play
+            </p>
           </article>
 
-          <!-- Social media content automation -->
-          <article class="reveal">
-            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 mb-1">
-              <h3 class="text-ink font-medium">
-                ai social media content automation
+          <!-- Social automation -->
+          <article>
+            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+              <h3 class="text-base font-semibold text-zinc-900">
+                AI Social Media Content Automation
               </h3>
-              <time class="text-xs text-comment">feb 2024</time>
+              <span class="text-xs text-zinc-400">Feb 2024</span>
             </div>
-            <p class="text-xs text-str/80 mb-4">freelance</p>
-            <ul class="space-y-2 mb-4 max-w-2xl">
-              <li class="flex gap-2 text-muted leading-relaxed">
-                <span class="text-accent shrink-0">-</span>
-                <span>integrated the openai gpt api to automate a client's content-generation workflow at 95% output accuracy — eliminating hours of manual copywriting every week.</span>
+            <p class="text-sm text-zinc-500 mt-0.5">Freelance</p>
+            <ul class="mt-3 space-y-2 text-sm text-zinc-600 leading-relaxed max-w-xl">
+              <li class="flex gap-3">
+                <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+                <span>Integrated the OpenAI GPT API to automate a client's content-generation workflow at 95% output accuracy — eliminating hours of manual copywriting every week.</span>
               </li>
-              <li class="flex gap-2 text-muted leading-relaxed">
-                <span class="text-accent shrink-0">-</span>
-                <span>designed scheduling logic that timed posts around peak audience activity, driving a 30% increase in visibility and engagement.</span>
+              <li class="flex gap-3">
+                <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+                <span>Designed scheduling logic that timed posts around peak audience activity, driving a 30% increase in visibility and engagement.</span>
               </li>
             </ul>
-            <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs">
-              <span class="tag">openai gpt api</span>
-              <span class="tag">python</span>
-              <span class="tag">twitter/x api</span>
-            </div>
+            <p class="mt-3 text-xs text-zinc-400">
+              OpenAI GPT API · Python · Twitter/X API
+            </p>
           </article>
 
           <!-- Bitget -->
-          <article class="reveal">
-            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 mb-1">
-              <h3 class="text-ink font-medium">
-                bitget trading platform <span class="text-muted">— api integration support</span>
+          <article>
+            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+              <h3 class="text-base font-semibold text-zinc-900">
+                Bitget — API Integration Support
               </h3>
-              <time class="text-xs text-comment">feb 2024</time>
+              <span class="text-xs text-zinc-400">Feb 2024</span>
             </div>
-            <p class="text-xs text-str/80 mb-4">freelance</p>
-            <ul class="space-y-2 mb-4 max-w-2xl">
-              <li class="flex gap-2 text-muted leading-relaxed">
-                <span class="text-accent shrink-0">-</span>
-                <span>diagnosed and resolved critical python api integration failures that were blocking automated trading — restoring 100% functionality and preventing further revenue-impacting downtime.</span>
+            <p class="text-sm text-zinc-500 mt-0.5">Freelance</p>
+            <ul class="mt-3 space-y-2 text-sm text-zinc-600 leading-relaxed max-w-xl">
+              <li class="flex gap-3">
+                <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+                <span>Diagnosed and resolved critical Python API integration failures that were blocking automated trading — restoring 100% functionality and preventing revenue-impacting downtime.</span>
               </li>
-              <li class="flex gap-2 text-muted leading-relaxed">
-                <span class="text-accent shrink-0">-</span>
-                <span>rebuilt the signature-generation logic and overhauled error handling, making the integration more resilient and far faster to debug.</span>
+              <li class="flex gap-3">
+                <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+                <span>Rebuilt the signature-generation logic and overhauled error handling, making the integration more resilient and faster to debug.</span>
               </li>
             </ul>
-            <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs">
-              <span class="tag">python</span>
-              <span class="tag">rest</span>
-              <span class="tag">signature-based auth</span>
-            </div>
+            <p class="mt-3 text-xs text-zinc-400">
+              Python · REST · Signature-Based Auth
+            </p>
           </article>
         </div>
       </section>
 
-      <!-- Projects Section -->
-      <section id="projects" class="mb-20 scroll-mt-24">
-        <div class="reveal mb-8 flex items-center gap-4">
-          <h2 class="text-accent text-xs whitespace-nowrap">// 03 · projects</h2>
-          <div class="h-px flex-1 bg-white/5"></div>
+      <!-- Projects -->
+      <section id="projects" class="mt-20 scroll-mt-24">
+        <div class="mb-8">
+          <h2 class="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
+            Projects
+          </h2>
+          <div class="mt-3 h-px bg-zinc-200"></div>
         </div>
 
         <div class="space-y-12">
           <!-- Facty -->
-          <article class="reveal">
-            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 mb-1">
-              <h3 class="text-ink font-medium">facty <span class="text-muted">— ai fact-check chrome extension</span></h3>
-              <time class="text-xs text-comment">jul 2025 — sep 2025</time>
+          <article>
+            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+              <h3 class="text-base font-semibold text-zinc-900">
+                Facty — AI Fact-Check Chrome Extension
+              </h3>
+              <span class="text-xs text-zinc-400">Jul 2025 — Sep 2025</span>
             </div>
-            <ul class="space-y-2 mb-3 max-w-2xl">
-              <li class="flex gap-2 text-muted leading-relaxed">
-                <span class="text-accent shrink-0">-</span>
-                <span>chrome extension for real-time fact-checking, integrating gemini 2.5 pro ai and the google custom search api — instant verdicts with detailed explanations and source citations.</span>
+            <ul class="mt-3 space-y-2 text-sm text-zinc-600 leading-relaxed max-w-xl">
+              <li class="flex gap-3">
+                <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+                <span>Chrome extension for real-time fact-checking, integrating Gemini 2.5 Pro AI and the Google Custom Search API — instant verdicts with detailed explanations and source citations.</span>
               </li>
-              <li class="flex gap-2 text-muted leading-relaxed">
-                <span class="text-accent shrink-0">-</span>
-                <span>responsive popup ui with color-coded verdicts and secure settings management via the chrome storage api.</span>
+              <li class="flex gap-3">
+                <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+                <span>Responsive popup UI with color-coded verdicts and secure settings management via the Chrome Storage API.</span>
               </li>
             </ul>
             <a
               href="https://chromewebstore.google.com/detail/facty-fact-check-ai/jhabhhloocimglfoeedangndajfbapcd"
               target="_blank"
               rel="noopener"
-              class="text-xs text-accent hover:underline block mb-3">↳ chrome web store ↗</a>
-            <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs">
-              <span class="tag">chrome extension api</span>
-              <span class="tag">javascript</span>
-              <span class="tag">gemini 2.5 pro</span>
-              <span class="tag">custom search api</span>
-            </div>
+              class="inline-block mt-3 text-xs font-medium text-navy hover:underline">
+              Chrome Web Store ↗
+            </a>
+            <p class="mt-2 text-xs text-zinc-400">
+              Chrome Extension API · JavaScript · Gemini 2.5 Pro · Custom Search API
+            </p>
           </article>
 
           <!-- Cover Pro -->
-          <article class="reveal">
-            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 mb-1">
-              <h3 class="text-ink font-medium">cover pro <span class="text-muted">— ai cover letter generator</span></h3>
-              <time class="text-xs text-comment">jun 2025 — aug 2025</time>
+          <article>
+            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+              <h3 class="text-base font-semibold text-zinc-900">
+                Cover Pro — AI Cover Letter Generator
+              </h3>
+              <span class="text-xs text-zinc-400">Jun 2025 — Aug 2025</span>
             </div>
-            <ul class="space-y-2 mb-3 max-w-2xl">
-              <li class="flex gap-2 text-muted leading-relaxed">
-                <span class="text-accent shrink-0">-</span>
-                <span>full-stack web app using google gemini ai to generate personalized 300–400 word cover letters by analyzing a candidate's resume against a target job description.</span>
+            <ul class="mt-3 space-y-2 text-sm text-zinc-600 leading-relaxed max-w-xl">
+              <li class="flex gap-3">
+                <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+                <span>Full-stack web app using Google Gemini AI to generate personalized 300–400 word cover letters by analyzing a candidate's resume against a target job description.</span>
               </li>
-              <li class="flex gap-2 text-muted leading-relaxed">
-                <span class="text-accent shrink-0">-</span>
-                <span>secure authentication with clerk and protected api routes; pdf/docx upload parsing via mammoth and pdf-parse to remove onboarding friction.</span>
+              <li class="flex gap-3">
+                <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+                <span>Secure authentication with Clerk and protected API routes; PDF/DOCX upload parsing via Mammoth and pdf-parse.</span>
               </li>
             </ul>
             <a
               href="https://coverpro.netlify.app"
               target="_blank"
               rel="noopener"
-              class="text-xs text-accent hover:underline block mb-3">↳ coverpro.netlify.app ↗</a>
-            <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs">
-              <span class="tag">next.js</span>
-              <span class="tag">typescript</span>
-              <span class="tag">supabase</span>
-              <span class="tag">clerk</span>
-              <span class="tag">gemini ai</span>
-            </div>
+              class="inline-block mt-3 text-xs font-medium text-navy hover:underline">
+              coverpro.netlify.app ↗
+            </a>
+            <p class="mt-2 text-xs text-zinc-400">
+              Next.js · TypeScript · Supabase · Clerk · Gemini AI
+            </p>
           </article>
 
           <!-- Cosmoxis -->
-          <article class="reveal">
-            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 mb-1">
-              <h3 class="text-ink font-medium">cosmoxis <span class="text-muted">— ai receipt scanning saas</span></h3>
-              <time class="text-xs text-comment">nov 2024 — feb 2025</time>
+          <article>
+            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+              <h3 class="text-base font-semibold text-zinc-900">
+                Cosmoxis — AI Receipt Scanning SaaS
+              </h3>
+              <span class="text-xs text-zinc-400">Nov 2024 — Feb 2025</span>
             </div>
-            <ul class="space-y-2 mb-3 max-w-2xl">
-              <li class="flex gap-2 text-muted leading-relaxed">
-                <span class="text-accent shrink-0">-</span>
-                <span>designed and built the full product end-to-end — marketing site, web app and backend — launching an ai-powered ocr engine that turns receipts into structured financial data in seconds.</span>
+            <ul class="mt-3 space-y-2 text-sm text-zinc-600 leading-relaxed max-w-xl">
+              <li class="flex gap-3">
+                <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+                <span>Designed and built the full product end-to-end — marketing site, web app and backend — launching an AI-powered OCR engine that turns receipts into structured financial data in seconds.</span>
               </li>
-              <li class="flex gap-2 text-muted leading-relaxed">
-                <span class="text-accent shrink-0">-</span>
-                <span>smart categorization, budget tracking, csv/pdf export and tiered subscription plans (free / pro / business) with usage limits, account management and encrypted storage.</span>
+              <li class="flex gap-3">
+                <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+                <span>Smart categorization, budget tracking, CSV/PDF export and tiered subscription plans with usage limits, account management and encrypted storage.</span>
               </li>
             </ul>
             <a
               href="https://cosmoxis.com"
               target="_blank"
               rel="noopener"
-              class="text-xs text-accent hover:underline block mb-3">↳ cosmoxis.com ↗</a>
-            <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs">
-              <span class="tag">next.js</span>
-              <span class="tag">typescript</span>
-              <span class="tag">supabase</span>
-              <span class="tag">ai / ocr</span>
-            </div>
+              class="inline-block mt-3 text-xs font-medium text-navy hover:underline">
+              cosmoxis.com ↗
+            </a>
+            <p class="mt-2 text-xs text-zinc-400">
+              Next.js · TypeScript · Supabase · AI / OCR
+            </p>
           </article>
 
           <!-- Shifthive -->
-          <article class="reveal">
-            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 mb-1">
-              <h3 class="text-ink font-medium">shifthive <span class="text-muted">— workforce scheduling platform</span></h3>
-              <time class="text-xs text-comment">apr 2022 — mar 2024</time>
+          <article>
+            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+              <h3 class="text-base font-semibold text-zinc-900">
+                Shifthive — Workforce Scheduling Platform
+              </h3>
+              <span class="text-xs text-zinc-400">Apr 2022 — Mar 2024</span>
             </div>
-            <p class="text-xs text-str/80 mb-4">part-time development support · ontario</p>
-            <ul class="space-y-2 mb-4 max-w-2xl">
-              <li class="flex gap-2 text-muted leading-relaxed">
-                <span class="text-accent shrink-0">-</span>
-                <span>built a hospital workforce scheduling platform in next.js and react — reducing scheduling time by 70% and overtime costs by 20% through automated staff-allocation algorithms.</span>
+            <p class="text-sm text-zinc-500 mt-0.5">Part-Time Development Support · Ontario</p>
+            <ul class="mt-3 space-y-2 text-sm text-zinc-600 leading-relaxed max-w-xl">
+              <li class="flex gap-3">
+                <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+                <span>Built a hospital workforce scheduling platform in Next.js and React — reducing scheduling time by 70% and overtime costs by 20% through automated staff-allocation algorithms.</span>
               </li>
-              <li class="flex gap-2 text-muted leading-relaxed">
-                <span class="text-accent shrink-0">-</span>
-                <span>developed an excel-to-algorithm import pipeline that eliminated 15 hours/week of manual data entry, and configurable org modules that cut support requests by 30%.</span>
+              <li class="flex gap-3">
+                <span class="mt-[9px] h-1 w-1 rounded-full bg-zinc-300 shrink-0"></span>
+                <span>Developed an Excel-to-algorithm import pipeline that eliminated 15 hours/week of manual data entry, and configurable org modules that cut support requests by 30%.</span>
               </li>
             </ul>
-            <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs">
-              <span class="tag">next.js</span>
-              <span class="tag">react</span>
-              <span class="tag">automation</span>
-            </div>
+            <p class="mt-3 text-xs text-zinc-400">
+              Next.js · React · Automation
+            </p>
           </article>
         </div>
       </section>
 
-      <!-- Writing Section -->
-      <section id="writing" class="mb-20 scroll-mt-24">
-        <div class="reveal mb-8 flex items-center gap-4">
-          <h2 class="text-accent text-xs whitespace-nowrap">// 04 · writing</h2>
-          <div class="h-px flex-1 bg-white/5"></div>
+      <!-- Writing -->
+      <section id="writing" class="mt-20 scroll-mt-24">
+        <div class="mb-8">
+          <h2 class="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
+            Writing
+          </h2>
+          <div class="mt-3 h-px bg-zinc-200"></div>
         </div>
 
-        <div class="space-y-1">
+        <div class="divide-y divide-zinc-200">
           <a
             href="https://medium.com/@hassan0599/from-bricks-to-bytes-the-art-of-constructing-quality-software-c7114ba65354"
             target="_blank"
             rel="noopener"
-            class="group reveal flex items-center justify-between gap-4 py-3 border-b border-white/5 hover:border-white/15 transition-colors">
-            <span class="text-ink group-hover:text-accent transition-colors">from bricks to bytes: the art of constructing quality software</span>
-            <span class="text-xs text-comment shrink-0">medium ↗</span>
+            class="group flex items-center justify-between gap-4 py-4">
+            <span class="text-sm font-medium text-zinc-800 group-hover:text-navy transition-colors">
+              From Bricks to Bytes: The Art of Constructing Quality Software
+            </span>
+            <span class="text-xs text-zinc-400 shrink-0 group-hover:text-navy transition-colors">
+              Medium ↗
+            </span>
           </a>
           <a
             href="https://medium.com/@hassan0599/exploring-the-latest-developments-in-ai-eb3eebf7870a"
             target="_blank"
             rel="noopener"
-            class="group reveal flex items-center justify-between gap-4 py-3 border-b border-white/5 hover:border-white/15 transition-colors">
-            <span class="text-ink group-hover:text-accent transition-colors">exploring the latest developments in ai</span>
-            <span class="text-xs text-comment shrink-0">medium ↗</span>
+            class="group flex items-center justify-between gap-4 py-4">
+            <span class="text-sm font-medium text-zinc-800 group-hover:text-navy transition-colors">
+              Exploring the Latest Developments in AI
+            </span>
+            <span class="text-xs text-zinc-400 shrink-0 group-hover:text-navy transition-colors">
+              Medium ↗
+            </span>
           </a>
         </div>
       </section>
 
-      <!-- Skills Section -->
-      <section id="skills" class="mb-20 scroll-mt-24">
-        <div class="reveal mb-8 flex items-center gap-4">
-          <h2 class="text-accent text-xs whitespace-nowrap">// 05 · skills</h2>
-          <div class="h-px flex-1 bg-white/5"></div>
+      <!-- Skills -->
+      <section id="skills" class="mt-20 scroll-mt-24">
+        <div class="mb-8">
+          <h2 class="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
+            Skills
+          </h2>
+          <div class="mt-3 h-px bg-zinc-200"></div>
         </div>
 
-        <div class="reveal text-xs md:text-[13px] leading-7">
-          <div class="grid grid-cols-[130px_1fr] gap-x-4">
-            <span class="text-ink">languages</span>
-            <span class="text-muted"><span class="text-accent">:</span> typescript, javascript, python, java, kotlin, sql, html/css, json</span>
+        <div class="space-y-5">
+          <div class="grid grid-cols-[140px_1fr] gap-x-4 text-sm">
+            <span class="font-medium text-zinc-900">Languages</span>
+            <span class="text-zinc-600">TypeScript, JavaScript, Python, Java, Kotlin, SQL, HTML/CSS, JSON</span>
           </div>
-          <div class="grid grid-cols-[130px_1fr] gap-x-4">
-            <span class="text-ink">front_end</span>
-            <span class="text-muted"><span class="text-accent">:</span> react, next.js, tailwind css, responsive ui, jquery</span>
+          <div class="grid grid-cols-[140px_1fr] gap-x-4 text-sm">
+            <span class="font-medium text-zinc-900">Front-End</span>
+            <span class="text-zinc-600">React, Next.js, Tailwind CSS, Responsive UI, jQuery</span>
           </div>
-          <div class="grid grid-cols-[130px_1fr] gap-x-4">
-            <span class="text-ink">back_end</span>
-            <span class="text-muted"><span class="text-accent">:</span> node.js, express, flask, rest design, webhooks, serverless, crm integrations — leadrat · whatsapp business · openai · gemini</span>
+          <div class="grid grid-cols-[140px_1fr] gap-x-4 text-sm">
+            <span class="font-medium text-zinc-900">Back-End &amp; APIs</span>
+            <span class="text-zinc-600">Node.js, Express, Flask, REST Design, Webhooks, Serverless — CRM integrations: LeadRat, WhatsApp Business, OpenAI, Gemini</span>
           </div>
-          <div class="grid grid-cols-[130px_1fr] gap-x-4">
-            <span class="text-ink">data_cloud</span>
-            <span class="text-muted"><span class="text-accent">:</span> supabase, redis, docker, google cloud platform, github</span>
+          <div class="grid grid-cols-[140px_1fr] gap-x-4 text-sm">
+            <span class="font-medium text-zinc-900">Data &amp; Cloud</span>
+            <span class="text-zinc-600">Supabase, Redis, Docker, Google Cloud Platform, GitHub</span>
           </div>
         </div>
       </section>
 
-      <!-- Education Section -->
-      <section id="education" class="mb-20 scroll-mt-24">
-        <div class="reveal mb-8 flex items-center gap-4">
-          <h2 class="text-accent text-xs whitespace-nowrap">// 06 · education</h2>
-          <div class="h-px flex-1 bg-white/5"></div>
+      <!-- Education -->
+      <section id="education" class="mt-20 scroll-mt-24">
+        <div class="mb-8">
+          <h2 class="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
+            Education
+          </h2>
+          <div class="mt-3 h-px bg-zinc-200"></div>
         </div>
 
-        <article class="reveal">
-          <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 mb-1">
-            <h3 class="text-ink font-medium">university of toronto</h3>
-            <time class="text-xs text-comment">sep 2018 — jun 2023</time>
+        <article>
+          <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+            <h3 class="text-base font-semibold text-zinc-900">University of Toronto</h3>
+            <span class="text-xs text-zinc-400">Sep 2018 — Jun 2023</span>
           </div>
-          <p class="text-xs text-str/80">b.sc. cognitive science &amp; physics · toronto, on</p>
+          <p class="text-sm text-zinc-500 mt-0.5">
+            B.Sc. Cognitive Science &amp; Physics · Toronto, ON
+          </p>
         </article>
       </section>
 
-      <!-- Contact Section -->
-      <section id="contact" class="mb-16 scroll-mt-24">
-        <div class="reveal mb-8 flex items-center gap-4">
-          <h2 class="text-accent text-xs whitespace-nowrap">// 07 · contact</h2>
-          <div class="h-px flex-1 bg-white/5"></div>
+      <!-- Contact -->
+      <section id="contact" class="mt-20 scroll-mt-24">
+        <div class="mb-8">
+          <h2 class="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
+            Contact
+          </h2>
+          <div class="mt-3 h-px bg-zinc-200"></div>
         </div>
 
-        <div class="reveal text-xs md:text-[13px] leading-7">
-          <p class="text-ink mb-4"><span class="text-accent">$</span> hassan --contact</p>
-          <div class="grid grid-cols-[110px_1fr] gap-x-4">
-            <span class="text-ink">email</span>
-            <a href="mailto:developer.mha@gmail.com" class="text-accent hover:underline"><span class="text-muted">:</span> developer.mha@gmail.com</a>
+        <div class="space-y-3">
+          <div class="grid grid-cols-[110px_1fr] gap-x-4 text-sm">
+            <span class="text-zinc-400">Email</span>
+            <a href="mailto:developer.mha@gmail.com" class="text-navy hover:underline">developer.mha@gmail.com</a>
           </div>
-          <div class="grid grid-cols-[110px_1fr] gap-x-4">
-            <span class="text-ink">phone</span>
-            <span class="text-muted"><span class="text-accent">:</span> +1 (647) 803-4989</span>
+          <div class="grid grid-cols-[110px_1fr] gap-x-4 text-sm">
+            <span class="text-zinc-400">Phone</span>
+            <span class="text-zinc-600">+1 (647) 803-4989</span>
           </div>
-          <div class="grid grid-cols-[110px_1fr] gap-x-4">
-            <span class="text-ink">github</span>
-            <a href="https://github.com/hassan0599" target="_blank" rel="noopener" class="text-accent hover:underline"><span class="text-muted">:</span> github.com/hassan0599 ↗</a>
+          <div class="grid grid-cols-[110px_1fr] gap-x-4 text-sm">
+            <span class="text-zinc-400">GitHub</span>
+            <a href="https://github.com/hassan0599" target="_blank" rel="noopener" class="text-navy hover:underline">github.com/hassan0599 ↗</a>
           </div>
-          <div class="grid grid-cols-[110px_1fr] gap-x-4">
-            <span class="text-ink">linkedin</span>
-            <a href="https://www.linkedin.com/in/hassan0599" target="_blank" rel="noopener" class="text-accent hover:underline"><span class="text-muted">:</span> linkedin.com/in/hassan0599 ↗</a>
+          <div class="grid grid-cols-[110px_1fr] gap-x-4 text-sm">
+            <span class="text-zinc-400">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/hassan0599" target="_blank" rel="noopener" class="text-navy hover:underline">linkedin.com/in/hassan0599 ↗</a>
           </div>
         </div>
       </section>
 
       <!-- Footer -->
-      <footer
-        class="reveal border-t border-white/5 pt-6 flex flex-col sm:flex-row justify-between gap-3 text-xs text-comment">
-        <p><span class="text-accent/60">//</span> © <span id="year">2026</span> mohammad hassan amer · toronto, on</p>
-        <p class="cm">$ exit — process finished with exit code 0</p>
+      <footer class="mt-20 pt-6 border-t border-zinc-200 flex flex-col sm:flex-row justify-between gap-2 text-xs text-zinc-400">
+        <p>&copy; <span id="year">2026</span> Mohammad Hassan Amer</p>
+        <p>Toronto, ON</p>
       </footer>
     </main>
 
     <script>
       lucide.createIcons()
-
-      // Subtle scroll reveal
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible')
-              observer.unobserve(entry.target)
-            }
-          })
-        },
-        { threshold: 0.1 }
-      )
-      document
-        .querySelectorAll('.reveal')
-        .forEach((el) => observer.observe(el))
 
       // Mobile menu
       const menuToggle = document.getElementById('menu-toggle')
