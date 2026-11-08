@@ -19,7 +19,7 @@
     <meta property="og:type" content="website" />
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231e3a8a'/%3E%3Ctext x='50' y='68' font-size='52' font-family='Arial, sans-serif' font-weight='600' text-anchor='middle' fill='white'%3EM%3C/text%3E%3C/svg%3E" />
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%234281A4'/%3E%3Ctext x='50' y='68' font-size='52' font-family='Arial, sans-serif' font-weight='600' text-anchor='middle' fill='white'%3EM%3C/text%3E%3C/svg%3E" />
     <!-- Cloudflare Web Analytics -->
     <script
       defer
@@ -33,21 +33,25 @@
         darkMode: 'class',
         theme: {
           extend: {
+            /* Palette: Coolors — coral #FE938C, tan #E6B89C,
+               cream #EAD2AC, blue-gray #9CAFB7, steel blue #4281A4.
+               Token names below are legacy (anima.ai era); values are
+               the new palette. */
             colors: {
               ink: '#111111',
-              sage: '#D8DCCB',
-              sageDeep: '#C6CCB2',
-              lime: '#DCE89B',
-              limeGlow: '#E8F0A8',
-              palelime: '#F0F1D6',
-              lav: '#C0B4E6',
-              lavLight: '#EDEAF7',
-              mint: '#9EDDBE',
-              mintLight: '#E4F3EA',
-              violet: '#8A3FF0',
-              pinky: '#E8A0C8',
-              olive: '#8A8A5A',
-              greyblue: '#6B7A8A',
+              sage: '#EAD2AC',
+              sageDeep: '#E6B89C',
+              lime: '#FE938C',
+              limeGlow: '#E6B89C',
+              palelime: '#EAD2AC',
+              lav: '#9CAFB7',
+              lavLight: '#EDF1F2',
+              mint: '#4281A4',
+              mintLight: '#E6EDF2',
+              violet: '#FE938C',
+              pinky: '#FE938C',
+              olive: '#4A5A63',
+              greyblue: '#4A5A63',
             },
             fontFamily: {
               serif: ['"Playfair Display"', 'Georgia', 'serif'],
@@ -71,22 +75,22 @@
         -webkit-font-smoothing: antialiased;
       }
       ::selection {
-        background: #dce89b;
+        background: #fe938c;
         color: #111111;
       }
       ::-webkit-scrollbar {
         width: 10px;
       }
       ::-webkit-scrollbar-track {
-        background: #f0f1d6;
+        background: #ead2ac;
       }
       ::-webkit-scrollbar-thumb {
-        background: #c6ccb2;
+        background: #e6b89c;
         border-radius: 999px;
-        border: 2px solid #f0f1d6;
+        border: 2px solid #ead2ac;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #8a8a5a;
+        background: #4a5a63;
       }
 
       /* Anchor jumps clear the 64px fixed nav with room to spare. */
@@ -110,7 +114,7 @@
         letter-spacing: 0.22em;
         font-size: 11px;
         line-height: 1.6;
-        color: #6b7a8a;
+        color: #4a5a63;
       }
       .display {
         font-family: 'Playfair Display', Georgia, serif;
@@ -139,8 +143,8 @@
         display: inline-flex;
         align-items: center;
         border-radius: 999px;
-        background: #f0f1d6;
-        color: #4a4a38;
+        background: #ead2ac;
+        color: #4a5a63;
         font-family: 'IBM Plex Mono', ui-monospace, monospace;
         font-size: 11px;
         letter-spacing: 0.04em;
@@ -149,12 +153,12 @@
         white-space: nowrap;
       }
       .tag-lav {
-        background: #edeaf7;
-        color: #4c3f78;
+        background: #edf1f2;
+        color: #3e5563;
       }
       .tag-mint {
-        background: #e4f3ea;
-        color: #2f5b45;
+        background: #e6edf2;
+        color: #2e5568;
       }
       .pill {
         display: inline-flex;
