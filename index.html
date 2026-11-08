@@ -844,50 +844,14 @@
                 </h2>
               </div>
               <div class="reveal">
-                <!-- dev.to articles, rendered statically. A live fetch was
-                     tried first (Nov 8, 2026) but dev.to edge-caches the
-                     public articles list per Origin, so the site kept
-                     getting a stale 1-article list, and no client-side
-                     cache-buster works: unknown query params are stripped
-                     from the cache key and no-cache headers are ignored.
-                     Update these rows whenever a new article is published;
-                     newest first, max 5. -->
-                <a
-                  href="https://dev.to/hassan_devs/github-copilot-moves-into-xcode-and-the-walled-garden-opens-a-little-more-2ccb"
-                  target="_blank"
-                  rel="noopener"
-                  class="group flex items-center justify-between gap-6 py-7 border-t hairline">
-                  <span class="min-w-0">
-                    <span class="block font-serif text-2xl sm:text-3xl leading-snug text-ink group-hover:text-violet transition-colors">
-                      GitHub Copilot Moves Into Xcode, and the Walled Garden Opens a Little More
-                    </span>
-                    <span class="label-mono block mt-2">Nov 8, 2026 · 3 min read</span>
-                  </span>
-                  <span class="pill bg-palelime text-ink group-hover:bg-lime shrink-0 !py-2 !pl-4 !pr-2">
-                    dev.to
-                    <span class="cap bg-ink text-lime !w-7 !h-7">
-                      <i data-lucide="arrow-up-right"></i>
-                    </span>
-                  </span>
-                </a>
-                <a
-                  href="https://dev.to/hassan_devs/ai-code-assistants-in-2026-helpful-pair-or-crutch-fo6"
-                  target="_blank"
-                  rel="noopener"
-                  class="group flex items-center justify-between gap-6 py-7 border-t hairline">
-                  <span class="min-w-0">
-                    <span class="block font-serif text-2xl sm:text-3xl leading-snug text-ink group-hover:text-violet transition-colors">
-                      AI Code Assistants in 2026: Helpful Pair or Crutch?
-                    </span>
-                    <span class="label-mono block mt-2">Nov 7, 2026 · 3 min read</span>
-                  </span>
-                  <span class="pill bg-palelime text-ink group-hover:bg-lime shrink-0 !py-2 !pl-4 !pr-2">
-                    dev.to
-                    <span class="cap bg-ink text-lime !w-7 !h-7">
-                      <i data-lucide="arrow-up-right"></i>
-                    </span>
-                  </span>
-                </a>
+                <!-- dev.to articles, filled in at load time from the public
+                     dev.to RSS feed (see script at the end of the page).
+                     The JSON API was tried first but dev.to edge-caches it
+                     per Origin, so the site kept getting a stale list; the
+                     RSS feed is cached at most 10 minutes and has no such
+                     variant. Stays empty if the fetch fails, leaving the
+                     Medium links below as the fallback. -->
+                <div id="devto-articles"></div>
                 <a
                   href="https://medium.com/@hassan0599/from-bricks-to-bytes-the-art-of-constructing-quality-software-c7114ba65354"
                   target="_blank"
@@ -1187,6 +1151,93 @@
       } else {
         revealAll()
       }
+    </script>
+    <script>
+      // Live dev.to articles: fetches the latest published posts from the
+      // public dev.to RSS feed (no key needed) and renders them at the top
+      // of the Writing section, in the same style as the Medium links.
+      // Only published articles are in the feed, never drafts. If the fetch
+      // fails or returns nothing, the container stays empty and the two
+      // Medium links below remain as the fallback.
+      //
+      // Why RSS and not the JSON API: dev.to edge-caches the JSON articles
+      // list per Origin (Vary: Origin), so requests from this site kept
+      // getting a stale 1-article list, and no client-side cache-buster
+      // works against it (unknown query params are stripped from the cache
+      // key, no-cache headers are ignored). The RSS feed has no Origin
+      // variant and is cached at most 10 minutes, so new articles show up
+      // quickly. The feed carries no reading time, so rows show the date
+      // only.
+      ;(function () {
+        var container = document.getElementById('devto-articles')
+        if (!container || !window.fetch || !window.DOMParser) return
+        fetch('https://dev.to/feed/hassan_devs')
+          .then(function (res) {
+            if (!res.ok) throw new Error('dev.to feed request failed')
+            return res.text()
+          })
+          .then(function (text) {
+            var doc = new DOMParser().parseFromString(text, 'text/xml')
+            var items = doc.querySelectorAll('item')
+            if (!items.length) return
+            var shown = 0
+            items.forEach(function (item) {
+              if (shown >= 5) return
+              var titleEl = item.querySelector('title')
+              var linkEl = item.querySelector('link')
+              if (!titleEl || !linkEl) return
+              var link = document.createElement('a')
+              link.href = linkEl.textContent
+              link.target = '_blank'
+              link.rel = 'noopener'
+              link.className =
+                'group flex items-center justify-between gap-6 py-7 border-t hairline'
+
+              var left = document.createElement('span')
+              left.className = 'min-w-0'
+
+              var title = document.createElement('span')
+              title.className =
+                'block font-serif text-2xl sm:text-3xl leading-snug text-ink group-hover:text-violet transition-colors'
+              title.textContent = titleEl.textContent
+              left.appendChild(title)
+
+              var dateEl = item.querySelector('pubDate')
+              var date = dateEl ? new Date(dateEl.textContent) : null
+              if (date && !isNaN(date)) {
+                var meta = document.createElement('span')
+                meta.className = 'label-mono block mt-2'
+                meta.textContent = date.toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric',
+                })
+                left.appendChild(meta)
+              }
+
+              link.appendChild(left)
+
+              var pill = document.createElement('span')
+              pill.className =
+                'pill bg-palelime text-ink group-hover:bg-lime shrink-0 !py-2 !pl-4 !pr-2'
+              pill.appendChild(document.createTextNode('dev.to '))
+              var cap = document.createElement('span')
+              cap.className = 'cap bg-ink text-lime !w-7 !h-7'
+              var icon = document.createElement('i')
+              icon.setAttribute('data-lucide', 'arrow-up-right')
+              cap.appendChild(icon)
+              pill.appendChild(cap)
+              link.appendChild(pill)
+
+              container.appendChild(link)
+              shown++
+            })
+            if (window.lucide) lucide.createIcons()
+          })
+          .catch(function () {
+            /* leave the Medium links as the fallback */
+          })
+      })()
     </script>
   </body>
 </html>
