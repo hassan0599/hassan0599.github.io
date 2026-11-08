@@ -1159,7 +1159,17 @@
       ;(function () {
         var container = document.getElementById('devto-articles')
         if (!container || !window.fetch) return
-        fetch('https://dev.to/api/articles?username=hassan_devs&per_page=5')
+        // The dev.to API edge-caches the public articles list for up to
+        // 48h (X-Accel-Expires: 172800), so a plain fetch can keep
+        // returning a stale list after a new article is published. The
+        // timestamp query param makes each load a fresh URL that no
+        // cache can match, and no-store keeps the browser from holding
+        // a stale copy either.
+        fetch(
+          'https://dev.to/api/articles?username=hassan_devs&per_page=5&_=' +
+            Date.now(),
+          { cache: 'no-store' }
+        )
           .then(function (res) {
             if (!res.ok) throw new Error('dev.to request failed')
             return res.json()
