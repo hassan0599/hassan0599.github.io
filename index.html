@@ -844,6 +844,11 @@
                 </h2>
               </div>
               <div class="reveal">
+                <!-- Filled in at load time from the public dev.to API (see
+                     script at the end of the page). Stays empty if the
+                     fetch fails, leaving the Medium links below as the
+                     fallback. -->
+                <div id="devto-articles"></div>
                 <a
                   href="https://medium.com/@hassan0599/from-bricks-to-bytes-the-art-of-constructing-quality-software-c7114ba65354"
                   target="_blank"
@@ -1143,6 +1148,82 @@
       } else {
         revealAll()
       }
+    </script>
+    <script>
+      // Dynamic dev.to articles: fetches the latest published posts from
+      // the public dev.to API (no key needed) and renders them at the top
+      // of the Writing section, in the same style as the Medium links.
+      // Only published articles are returned, never drafts. If the fetch
+      // fails or returns nothing, the container stays empty and the two
+      // Medium links below remain as the fallback.
+      ;(function () {
+        var container = document.getElementById('devto-articles')
+        if (!container || !window.fetch) return
+        fetch('https://dev.to/api/articles?username=hassan_devs&per_page=5')
+          .then(function (res) {
+            if (!res.ok) throw new Error('dev.to request failed')
+            return res.json()
+          })
+          .then(function (articles) {
+            if (!Array.isArray(articles) || !articles.length) return
+            articles.forEach(function (a) {
+              var link = document.createElement('a')
+              link.href = a.url
+              link.target = '_blank'
+              link.rel = 'noopener'
+              link.className =
+                'group flex items-center justify-between gap-6 py-7 border-t hairline'
+
+              var left = document.createElement('span')
+              left.className = 'min-w-0'
+
+              var title = document.createElement('span')
+              title.className =
+                'block font-serif text-2xl sm:text-3xl leading-snug text-ink group-hover:text-violet transition-colors'
+              title.textContent = a.title
+              left.appendChild(title)
+
+              var meta = document.createElement('span')
+              meta.className = 'label-mono block mt-2'
+              var parts = []
+              var date = a.published_at ? new Date(a.published_at) : null
+              if (date && !isNaN(date)) {
+                parts.push(
+                  date.toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                  })
+                )
+              }
+              if (a.reading_time_minutes) {
+                parts.push(a.reading_time_minutes + ' min read')
+              }
+              meta.textContent = parts.join(' · ')
+              left.appendChild(meta)
+
+              link.appendChild(left)
+
+              var pill = document.createElement('span')
+              pill.className =
+                'pill bg-palelime text-ink group-hover:bg-lime shrink-0 !py-2 !pl-4 !pr-2'
+              pill.appendChild(document.createTextNode('dev.to '))
+              var cap = document.createElement('span')
+              cap.className = 'cap bg-ink text-lime !w-7 !h-7'
+              var icon = document.createElement('i')
+              icon.setAttribute('data-lucide', 'arrow-up-right')
+              cap.appendChild(icon)
+              pill.appendChild(cap)
+              link.appendChild(pill)
+
+              container.appendChild(link)
+            })
+            if (window.lucide) lucide.createIcons()
+          })
+          .catch(function () {
+            /* leave the Medium links as the fallback */
+          })
+      })()
     </script>
   </body>
 </html>
