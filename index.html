@@ -214,6 +214,49 @@
         width: 0.95rem;
         height: 0.95rem;
       }
+      /* Text-only pill (no cap): symmetric padding instead of the
+         cap-side short padding. */
+      .pill-text {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+      .pill:disabled {
+        opacity: 0.35;
+        cursor: default;
+      }
+      .pill:disabled:hover {
+        transform: none;
+      }
+      /* Numbered page buttons for the Writing pagination. */
+      .page-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 999px;
+        border: 1px solid rgba(17, 17, 17, 0.12);
+        background: #ffffff;
+        color: #111111;
+        font-family: 'IBM Plex Mono', ui-monospace, monospace;
+        font-size: 12px;
+        line-height: 1;
+        cursor: pointer;
+        transition:
+          transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+          background-color 0.3s ease,
+          color 0.3s ease,
+          border-color 0.3s ease;
+      }
+      .page-btn:hover {
+        transform: translateY(-2px);
+        border-color: rgba(17, 17, 17, 0.3);
+      }
+      .page-btn[aria-current="page"] {
+        background: #111111;
+        color: #ead2ac;
+        border-color: #111111;
+      }
       .glass-nav {
         background: rgba(255, 255, 255, 0.82);
         backdrop-filter: blur(12px);
@@ -844,44 +887,57 @@
                 </h2>
               </div>
               <div class="reveal">
-                <!-- dev.to articles, filled in at load time from the public
-                     dev.to RSS feed (see script at the end of the page).
-                     The JSON API was tried first but dev.to edge-caches it
-                     per Origin, so the site kept getting a stale list; the
-                     RSS feed is cached at most 10 minutes and has no such
+                <!-- All Writing articles live in #writing-list and are
+                     paginated 3 per page by the script at the end of the
+                     page. The dev.to rows are filled in at load time from
+                     the public dev.to RSS feed (see that script). The JSON
+                     API was tried first but dev.to edge-caches it per
+                     Origin, so the site kept getting a stale list; the RSS
+                     feed is cached at most 10 minutes and has no such
                      variant. Stays empty if the fetch fails, leaving the
                      Medium links below as the fallback. -->
-                <div id="devto-articles"></div>
-                <a
-                  href="https://medium.com/@hassan0599/from-bricks-to-bytes-the-art-of-constructing-quality-software-c7114ba65354"
-                  target="_blank"
-                  rel="noopener"
-                  class="group flex items-center justify-between gap-6 py-7 border-t hairline">
-                  <span class="font-serif text-2xl sm:text-3xl leading-snug text-ink group-hover:text-violet transition-colors">
-                    From Bricks to Bytes: The Art of Constructing Quality Software
-                  </span>
-                  <span class="pill bg-palelime text-ink group-hover:bg-lime shrink-0 !py-2 !pl-4 !pr-2">
-                    Medium
-                    <span class="cap bg-ink text-lime !w-7 !h-7">
-                      <i data-lucide="arrow-up-right"></i>
+                <div id="writing-list" class="border-b hairline">
+                  <div id="devto-articles"></div>
+                  <a
+                    href="https://medium.com/@hassan0599/from-bricks-to-bytes-the-art-of-constructing-quality-software-c7114ba65354"
+                    target="_blank"
+                    rel="noopener"
+                    class="group flex items-center justify-between gap-6 py-7 border-t hairline">
+                    <span class="font-serif text-2xl sm:text-3xl leading-snug text-ink group-hover:text-violet transition-colors">
+                      From Bricks to Bytes: The Art of Constructing Quality Software
                     </span>
-                  </span>
-                </a>
-                <a
-                  href="https://medium.com/@hassan0599/exploring-the-latest-developments-in-ai-eb3eebf7870a"
-                  target="_blank"
-                  rel="noopener"
-                  class="group flex items-center justify-between gap-6 py-7 border-t border-b hairline">
-                  <span class="font-serif text-2xl sm:text-3xl leading-snug text-ink group-hover:text-violet transition-colors">
-                    Exploring the Latest Developments in AI
-                  </span>
-                  <span class="pill bg-palelime text-ink group-hover:bg-lime shrink-0 !py-2 !pl-4 !pr-2">
-                    Medium
-                    <span class="cap bg-ink text-lime !w-7 !h-7">
-                      <i data-lucide="arrow-up-right"></i>
+                    <span class="pill bg-palelime text-ink group-hover:bg-lime shrink-0 !py-2 !pl-4 !pr-2">
+                      Medium
+                      <span class="cap bg-ink text-lime !w-7 !h-7">
+                        <i data-lucide="arrow-up-right"></i>
+                      </span>
                     </span>
-                  </span>
-                </a>
+                  </a>
+                  <a
+                    href="https://medium.com/@hassan0599/exploring-the-latest-developments-in-ai-eb3eebf7870a"
+                    target="_blank"
+                    rel="noopener"
+                    class="group flex items-center justify-between gap-6 py-7 border-t hairline">
+                    <span class="font-serif text-2xl sm:text-3xl leading-snug text-ink group-hover:text-violet transition-colors">
+                      Exploring the Latest Developments in AI
+                    </span>
+                    <span class="pill bg-palelime text-ink group-hover:bg-lime shrink-0 !py-2 !pl-4 !pr-2">
+                      Medium
+                      <span class="cap bg-ink text-lime !w-7 !h-7">
+                        <i data-lucide="arrow-up-right"></i>
+                      </span>
+                    </span>
+                  </a>
+                </div>
+                <nav id="writing-pagination" class="hidden items-center justify-between gap-4 pt-6" aria-label="Writing pages">
+                  <button type="button" id="writing-prev" class="pill pill-text bg-white text-ink border hairline hover:border-ink/30">
+                    ← Prev
+                  </button>
+                  <span id="writing-page-numbers" class="flex items-center gap-2"></span>
+                  <button type="button" id="writing-next" class="pill pill-text bg-white text-ink border hairline hover:border-ink/30">
+                    Next →
+                  </button>
+                </nav>
               </div>
             </div>
           </div>
@@ -1153,6 +1209,78 @@
       }
     </script>
     <script>
+      // Writing pagination: 3 articles per page across the combined list
+      // (live dev.to rows + the two static Medium links in #writing-list).
+      // Runs once at load for the Medium-only list, then again after the
+      // dev.to feed renders below, so new articles paginate automatically
+      // with no code change. The nav stays hidden when there is only one
+      // page (3 or fewer articles, e.g. if the feed fetch fails).
+      ;(function () {
+        var PAGE_SIZE = 3
+        var list = document.getElementById('writing-list')
+        var nav = document.getElementById('writing-pagination')
+        var prevBtn = document.getElementById('writing-prev')
+        var nextBtn = document.getElementById('writing-next')
+        var numbers = document.getElementById('writing-page-numbers')
+        if (!list || !nav || !prevBtn || !nextBtn || !numbers) return
+        var page = 1
+        function rows() {
+          return Array.prototype.slice.call(list.querySelectorAll('a'))
+        }
+        function pageCount() {
+          return Math.max(1, Math.ceil(rows().length / PAGE_SIZE))
+        }
+        function render() {
+          var all = rows()
+          var pages = pageCount()
+          if (page > pages) page = pages
+          all.forEach(function (row, i) {
+            var first = (page - 1) * PAGE_SIZE
+            row.classList.toggle('hidden', i < first || i >= first + PAGE_SIZE)
+          })
+          if (pages <= 1) {
+            nav.classList.add('hidden')
+            nav.classList.remove('flex')
+            return
+          }
+          nav.classList.remove('hidden')
+          nav.classList.add('flex')
+          prevBtn.disabled = page === 1
+          nextBtn.disabled = page === pages
+          numbers.innerHTML = ''
+          for (var p = 1; p <= pages; p++) {
+            var b = document.createElement('button')
+            b.type = 'button'
+            b.className = 'page-btn'
+            b.textContent = p
+            b.setAttribute('aria-label', 'Writing page ' + p)
+            if (p === page) b.setAttribute('aria-current', 'page')
+            ;(function (n) {
+              b.addEventListener('click', function () {
+                page = n
+                render()
+              })
+            })(p)
+            numbers.appendChild(b)
+          }
+        }
+        prevBtn.addEventListener('click', function () {
+          if (page > 1) {
+            page--
+            render()
+          }
+        })
+        nextBtn.addEventListener('click', function () {
+          if (page < pageCount()) {
+            page++
+            render()
+          }
+        })
+        window.__paginateWriting = render
+        render()
+      })()
+    </script>
+    <script>
       // Live dev.to articles: fetches the latest published posts from the
       // public dev.to RSS feed (no key needed) and renders them at the top
       // of the Writing section, in the same style as the Medium links.
@@ -1233,6 +1361,7 @@
               shown++
             })
             if (window.lucide) lucide.createIcons()
+            if (window.__paginateWriting) window.__paginateWriting()
           })
           .catch(function () {
             /* leave the Medium links as the fallback */
