@@ -683,9 +683,10 @@
           <!-- All Writing rows live in #writing-list and are paginated 3 per
                page by the script at the end of the page. dev.to rows are
                added at load time from the public dev.to RSS feed (the JSON
-               API is edge-cached per Origin and served a stale list; the RSS
-               feed is cached at most 10 minutes). If the fetch fails, the
-               Medium rows below remain as the fallback. -->
+               API is edge-cached per Origin with a ~48h cache and served a
+               stale list; the RSS feed is cached at most 10 minutes). Every
+               item in the feed is rendered, newest first. If the fetch
+               fails, the Medium rows below remain as the fallback. -->
           <div id="writing-list">
             <div id="devto-articles"></div>
             <div class="post row">
@@ -850,9 +851,12 @@
     <script>
       // Live dev.to articles from the public RSS feed (published posts
       // only). Why RSS and not the JSON API: dev.to edge-caches the JSON
-      // list per Origin (Vary: Origin), so this site kept getting a stale
-      // list and no client-side cache-buster works against it. The RSS feed
-      // has no Origin variant and is cached at most 10 minutes.
+      // list per Origin (Vary: Origin, ~48h cache), so this site kept
+      // getting a stale list and no client-side cache-buster works against
+      // it. The RSS feed has no Origin variant and is cached at most
+      // 10 minutes. Every item in the feed is rendered, newest first, so
+      // the section always shows the latest articles instead of a fixed
+      // subset.
       ;(function () {
         var container = document.getElementById('devto-articles')
         if (!container || !window.fetch || !window.DOMParser) return
@@ -869,24 +873,35 @@
           })
           .then(function (text) {
             var doc = new DOMParser().parseFromString(text, 'text/xml')
-            var items = doc.querySelectorAll('item')
-            var shown = 0
-            items.forEach(function (item) {
-              if (shown >= 5) return
+            if (doc.querySelector('parsererror')) throw new Error('dev.to feed parse failed')
+            var posts = []
+            doc.querySelectorAll('item').forEach(function (item) {
               var titleEl = item.querySelector('title')
               var linkEl = item.querySelector('link')
               if (!titleEl || !linkEl) return
-              var row = el('div', 'post row')
+              var link = (linkEl.textContent || '').trim()
+              if (!link) return
               var dateEl = item.querySelector('pubDate')
               var date = dateEl ? new Date(dateEl.textContent) : null
+              if (date && isNaN(date)) date = null
+              posts.push({ title: titleEl.textContent, link: link, date: date })
+            })
+            posts.sort(function (a, b) {
+              if (a.date && b.date) return b.date - a.date
+              if (a.date) return -1
+              if (b.date) return 1
+              return 0
+            })
+            posts.forEach(function (post) {
+              var row = el('div', 'post row')
               var when = ''
-              if (date && !isNaN(date)) {
-                when = date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+              if (post.date) {
+                when = post.date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
               }
               row.appendChild(el('p', 'margin smallcaps', when))
               var main = el('p', 'main')
-              var a = el('a', 'title', titleEl.textContent)
-              a.href = linkEl.textContent
+              var a = el('a', 'title', post.title)
+              a.href = post.link
               a.target = '_blank'
               a.rel = 'noopener'
               main.appendChild(a)
@@ -895,12 +910,11 @@
               note.appendChild(el('em', '', 'dev.to'))
               row.appendChild(note)
               container.appendChild(row)
-              shown++
             })
-            if (shown && window.__paginateWriting) window.__paginateWriting()
+            if (posts.length && window.__paginateWriting) window.__paginateWriting()
           })
-          .catch(function () {
-            /* leave the Medium rows as the fallback */
+          .catch(function (err) {
+            if (window.console && console.warn) console.warn('dev.to feed failed, showing fallback', err)
           })
       })()
     </script>
